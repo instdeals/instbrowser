@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* MyUniqueAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MyUniqueAppTests.m */; };
+		00E356F31AD99517003FC87E /* InstBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* InstBrowserTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		5C1303000296191D7C2DFB2E /* libPods-MyUniqueApp-MyUniqueAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB80F29EE8DAD10373D5677 /* libPods-MyUniqueApp-MyUniqueAppTests.a */; };
+		5C1303000296191D7C2DFB2E /* libPods-InstBrowser-InstBrowserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB80F29EE8DAD10373D5677 /* libPods-InstBrowser-InstBrowserTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D6A3F82C729CCA25517376C8 /* libPods-MyUniqueApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDE2F0F4E7CF06DC302BCAB /* libPods-MyUniqueApp.a */; };
+		D6A3F82C729CCA25517376C8 /* libPods-InstBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDE2F0F4E7CF06DC302BCAB /* libPods-InstBrowser.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,28 +22,28 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = MyUniqueApp;
+			remoteInfo = InstBrowser;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* MyUniqueAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniqueAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* InstBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* MyUniqueAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyUniqueAppTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* MyUniqueApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyUniqueApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MyUniqueApp/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MyUniqueApp/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MyUniqueApp/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyUniqueApp/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MyUniqueApp/main.m; sourceTree = "<group>"; };
-		20C6F5D04BEAB876EB61044D /* Pods-MyUniqueApp-MyUniqueAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyUniqueApp-MyUniqueAppTests.release.xcconfig"; path = "Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		67E8D69DFA261037DB8CD28A /* Pods-MyUniqueApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyUniqueApp.release.xcconfig"; path = "Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MyUniqueApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ACBCCE410AA5BE5EA51E8DFF /* Pods-MyUniqueApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyUniqueApp.debug.xcconfig"; path = "Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp.debug.xcconfig"; sourceTree = "<group>"; };
-		CDDE2F0F4E7CF06DC302BCAB /* libPods-MyUniqueApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyUniqueApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* InstBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstBrowserTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* InstBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = InstBrowser/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = InstBrowser/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = InstBrowser/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = InstBrowser/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = InstBrowser/main.m; sourceTree = "<group>"; };
+		20C6F5D04BEAB876EB61044D /* Pods-InstBrowser-InstBrowserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstBrowser-InstBrowserTests.release.xcconfig"; path = "Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests.release.xcconfig"; sourceTree = "<group>"; };
+		67E8D69DFA261037DB8CD28A /* Pods-InstBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstBrowser.release.xcconfig"; path = "Target Support Files/Pods-InstBrowser/Pods-InstBrowser.release.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = InstBrowser/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ACBCCE410AA5BE5EA51E8DFF /* Pods-InstBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstBrowser.debug.xcconfig"; path = "Target Support Files/Pods-InstBrowser/Pods-InstBrowser.debug.xcconfig"; sourceTree = "<group>"; };
+		CDDE2F0F4E7CF06DC302BCAB /* libPods-InstBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InstBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FCB80F29EE8DAD10373D5677 /* libPods-MyUniqueApp-MyUniqueAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyUniqueApp-MyUniqueAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFC45D212B5F7ACE0C130512 /* Pods-MyUniqueApp-MyUniqueAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyUniqueApp-MyUniqueAppTests.debug.xcconfig"; path = "Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FCB80F29EE8DAD10373D5677 /* libPods-InstBrowser-InstBrowserTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InstBrowser-InstBrowserTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFC45D212B5F7ACE0C130512 /* Pods-InstBrowser-InstBrowserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstBrowser-InstBrowserTests.debug.xcconfig"; path = "Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C1303000296191D7C2DFB2E /* libPods-MyUniqueApp-MyUniqueAppTests.a in Frameworks */,
+				5C1303000296191D7C2DFB2E /* libPods-InstBrowser-InstBrowserTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,20 +59,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6A3F82C729CCA25517376C8 /* libPods-MyUniqueApp.a in Frameworks */,
+				D6A3F82C729CCA25517376C8 /* libPods-InstBrowser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* MyUniqueAppTests */ = {
+		00E356EF1AD99517003FC87E /* InstBrowserTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* MyUniqueAppTests.m */,
+				00E356F21AD99517003FC87E /* InstBrowserTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = MyUniqueAppTests;
+			path = InstBrowserTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -86,16 +86,16 @@
 		0BAC2D209BBF5ECD13081802 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ACBCCE410AA5BE5EA51E8DFF /* Pods-MyUniqueApp.debug.xcconfig */,
-				67E8D69DFA261037DB8CD28A /* Pods-MyUniqueApp.release.xcconfig */,
-				FFC45D212B5F7ACE0C130512 /* Pods-MyUniqueApp-MyUniqueAppTests.debug.xcconfig */,
-				20C6F5D04BEAB876EB61044D /* Pods-MyUniqueApp-MyUniqueAppTests.release.xcconfig */,
+				ACBCCE410AA5BE5EA51E8DFF /* Pods-InstBrowser.debug.xcconfig */,
+				67E8D69DFA261037DB8CD28A /* Pods-InstBrowser.release.xcconfig */,
+				FFC45D212B5F7ACE0C130512 /* Pods-InstBrowser-InstBrowserTests.debug.xcconfig */,
+				20C6F5D04BEAB876EB61044D /* Pods-InstBrowser-InstBrowserTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* MyUniqueApp */ = {
+		13B07FAE1A68108700A75B9A /* InstBrowser */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -105,15 +105,15 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = MyUniqueApp;
+			name = InstBrowser;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				CDDE2F0F4E7CF06DC302BCAB /* libPods-MyUniqueApp.a */,
-				FCB80F29EE8DAD10373D5677 /* libPods-MyUniqueApp-MyUniqueAppTests.a */,
+				CDDE2F0F4E7CF06DC302BCAB /* libPods-InstBrowser.a */,
+				FCB80F29EE8DAD10373D5677 /* libPods-InstBrowser-InstBrowserTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,9 +128,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* MyUniqueApp */,
+				13B07FAE1A68108700A75B9A /* InstBrowser */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* MyUniqueAppTests */,
+				00E356EF1AD99517003FC87E /* InstBrowserTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				0BAC2D209BBF5ECD13081802 /* Pods */,
@@ -143,8 +143,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* MyUniqueApp.app */,
-				00E356EE1AD99517003FC87E /* MyUniqueAppTests.xctest */,
+				13B07F961A680F5B00A75B9A /* InstBrowser.app */,
+				00E356EE1AD99517003FC87E /* InstBrowserTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,9 +152,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* MyUniqueAppTests */ = {
+		00E356ED1AD99517003FC87E /* InstBrowserTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MyUniqueAppTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "InstBrowserTests" */;
 			buildPhases = (
 				5A3F2E2E0234FBBF4276CAA7 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -168,14 +168,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = MyUniqueAppTests;
-			productName = MyUniqueAppTests;
-			productReference = 00E356EE1AD99517003FC87E /* MyUniqueAppTests.xctest */;
+			name = InstBrowserTests;
+			productName = InstBrowserTests;
+			productReference = 00E356EE1AD99517003FC87E /* InstBrowserTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* MyUniqueApp */ = {
+		13B07F861A680F5B00A75B9A /* InstBrowser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MyUniqueApp" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "InstBrowser" */;
 			buildPhases = (
 				775D84C22182395C5DDC5116 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -190,9 +190,9 @@
 			);
 			dependencies = (
 			);
-			name = MyUniqueApp;
-			productName = MyUniqueApp;
-			productReference = 13B07F961A680F5B00A75B9A /* MyUniqueApp.app */;
+			name = InstBrowser;
+			productName = InstBrowser;
+			productReference = 13B07F961A680F5B00A75B9A /* InstBrowser.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -212,7 +212,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MyUniqueApp" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "InstBrowser" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -225,8 +225,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* MyUniqueApp */,
-				00E356ED1AD99517003FC87E /* MyUniqueAppTests */,
+				13B07F861A680F5B00A75B9A /* InstBrowser */,
+				00E356ED1AD99517003FC87E /* InstBrowserTests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,15 +271,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser/Pods-InstBrowser-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser/Pods-InstBrowser-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InstBrowser/Pods-InstBrowser-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5A3F2E2E0234FBBF4276CAA7 /* [CP] Check Pods Manifest.lock */ = {
@@ -297,7 +297,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MyUniqueApp-MyUniqueAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-InstBrowser-InstBrowserTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -310,15 +310,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser/Pods-InstBrowser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser/Pods-InstBrowser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp/Pods-MyUniqueApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InstBrowser/Pods-InstBrowser-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		775D84C22182395C5DDC5116 /* [CP] Check Pods Manifest.lock */ = {
@@ -336,7 +336,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MyUniqueApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-InstBrowser-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -349,15 +349,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ABBEAD90C7CA89F709CA7EF8 /* [CP] Embed Pods Frameworks */ = {
@@ -366,15 +366,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyUniqueApp-MyUniqueAppTests/Pods-MyUniqueApp-MyUniqueAppTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InstBrowser-InstBrowserTests/Pods-InstBrowser-InstBrowserTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -403,7 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* MyUniqueAppTests.m in Sources */,
+				00E356F31AD99517003FC87E /* InstBrowserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +421,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* MyUniqueApp */;
+			target = 13B07F861A680F5B00A75B9A /* InstBrowser */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -429,14 +429,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFC45D212B5F7ACE0C130512 /* Pods-MyUniqueApp-MyUniqueAppTests.debug.xcconfig */;
+			baseConfigurationReference = FFC45D212B5F7ACE0C130512 /* Pods-InstBrowser-InstBrowserTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = MyUniqueAppTests/Info.plist;
+				INFOPLIST_FILE = InstBrowserTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,17 +450,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyUniqueApp.app/MyUniqueApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InstBrowser.app/InstBrowser";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20C6F5D04BEAB876EB61044D /* Pods-MyUniqueApp-MyUniqueAppTests.release.xcconfig */;
+			baseConfigurationReference = 20C6F5D04BEAB876EB61044D /* Pods-InstBrowser-InstBrowserTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = MyUniqueAppTests/Info.plist;
+				INFOPLIST_FILE = InstBrowserTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -474,19 +474,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyUniqueApp.app/MyUniqueApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InstBrowser.app/InstBrowser";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACBCCE410AA5BE5EA51E8DFF /* Pods-MyUniqueApp.debug.xcconfig */;
+			baseConfigurationReference = ACBCCE410AA5BE5EA51E8DFF /* Pods-InstBrowser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = MyUniqueApp/Info.plist;
+				INFOPLIST_FILE = InstBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +497,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = MyUniqueApp;
+				PRODUCT_NAME = InstBrowser;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -506,12 +506,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67E8D69DFA261037DB8CD28A /* Pods-MyUniqueApp.release.xcconfig */;
+			baseConfigurationReference = 67E8D69DFA261037DB8CD28A /* Pods-InstBrowser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = MyUniqueApp/Info.plist;
+				INFOPLIST_FILE = InstBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,7 +522,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = MyUniqueApp;
+				PRODUCT_NAME = InstBrowser;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -654,7 +654,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MyUniqueAppTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "InstBrowserTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -663,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MyUniqueApp" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "InstBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -672,7 +672,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MyUniqueApp" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "InstBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
