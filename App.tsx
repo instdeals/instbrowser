@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { LegacyRef, useContext } from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   Text,
   useColorScheme,
@@ -9,12 +8,14 @@ import {
 } from 'react-native';
 
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
-import WebView from 'react-native-webview';
+import NavigationContext, { NavigationContextProvider } from './src/contexts/NavigationContext';
+import { WebViewContextProvider } from './src/contexts/WebViewContext';
 import BottomBar, { BottomBarIcon } from './src/nativeCommon/BottomBar';
 import commonStyles from './src/nativeCommon/commonStyles';
 import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollContext';
 import { doNothing } from './src/tsCommon/baseTypes';
-import { InstWebView } from './src/webView/InstWebView';
+import { InstWebView, WebViewStateCallback } from './src/webView/InstWebView';
+import InstWebViewHolder from './src/webView/InstWebViewHolder';
 
 const theme = {
   ...DefaultTheme,
@@ -25,6 +26,44 @@ const theme = {
   },
 };
 
+function AppInner() {
+  const { api: navigation, state: navState } = useContext(NavigationContext)!;
+  const bottomBar = () => <BottomBar>
+    <BottomBarIcon key='backward' name='chevron-left' onPress={navigation.goBack}
+      disabled={!navState.canGoBack} />
+    <BottomBarIcon key='heart' name='heart' onPress={doNothing} />
+    <BottomBarIcon key='home' name='home' onPress={doNothing} />
+    <BottomBarIcon key='user' name='user' onPress={doNothing} />
+  </BottomBar>;
+
+  const routes = [
+    { key: 'Main', title: 'main' }
+  ];
+
+  const renderSceneByKey = (key: string,
+    onWebViewStateChange: WebViewStateCallback,
+    ref: LegacyRef<InstWebView>) => {
+    return 'https://bing.com';
+  }
+
+  return <ScrollViewProvider>
+    <View style={commonStyles.flexCol1}>
+      <AutoHideView contentHeight={25}>
+        <Text>Address Bar Goes Here</Text>
+      </AutoHideView>
+      <InstWebViewHolder
+        routes={routes}
+        defaultIndex={0}
+        hideTabBar={true}
+        renderSceneByKey={renderSceneByKey}
+      />
+      <AutoHideView contentHeight={40}>
+        {bottomBar()}
+      </AutoHideView>
+    </View>
+  </ScrollViewProvider>
+}
+
 export default function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -33,30 +72,12 @@ export default function App() {
     flex: 1,
   };
 
-  const bottomBar = () => <BottomBar>
-    <BottomBarIcon key='backward' name='chevron-left' onPress={doNothing} />
-    <BottomBarIcon key='heart' name='heart' onPress={doNothing} />
-    <BottomBarIcon key='home' name='home' onPress={doNothing} />
-    <BottomBarIcon key='user' name='user' onPress={doNothing} />
-  </BottomBar>;
-
   return <PaperProvider theme={theme}>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollViewProvider>
-        <View style={{
-          ...commonStyles.flexCol,
-          flex: 1,
-        }}>
-          <AutoHideView contentHeight={25}>
-            <Text>Address Bar Goes Here</Text>
-          </AutoHideView>
-          <InstWebView webViewKey='solo' style={commonStyles.flex1} uri='http://www.bing.com' />
-          <AutoHideView contentHeight={40}>
-            {bottomBar()}
-          </AutoHideView>
-        </View>
-      </ScrollViewProvider>
+      <WebViewContextProvider><NavigationContextProvider>
+        <AppInner />
+      </NavigationContextProvider></WebViewContextProvider>
     </SafeAreaView>
   </PaperProvider>
 }

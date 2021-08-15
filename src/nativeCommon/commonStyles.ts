@@ -17,6 +17,11 @@ const commonStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
   },
+  flexCol1: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
   flexRow1: {
     display: 'flex',
     flexDirection: 'row',

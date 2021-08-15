@@ -1,4 +1,5 @@
-import { Platform } from 'react-native';
+import { DependencyList, useEffect } from 'react';
+import { BackHandler, Platform } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 
 export default class NativeUtils {
@@ -25,5 +26,14 @@ export default class NativeUtils {
         borderBottomWidth: 0,
       },
     });
+  }
+
+  static useBackButton(handler: () => boolean, deps?: DependencyList) {
+    useEffect(() => {
+      BackHandler.addEventListener("hardwareBackPress", handler);
+      return () => {
+        BackHandler.removeEventListener("hardwareBackPress", handler);
+      };
+    }, deps);
   }
 }

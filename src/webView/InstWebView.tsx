@@ -3,6 +3,8 @@ import { WebView } from 'react-native-webview';
 import TsUtils, { DeferredPromise } from '../tsCommon/TsUtils';
 import ScrollContext from '../nativeCommon/ScrollContext';
 import { Platform } from 'react-native';
+import { Callback } from '../tsCommon/baseTypes';
+
 export interface UrlCallback {
   (key: string, url: string, title: string): void
 }
@@ -43,6 +45,7 @@ interface Props {
   style?: Object;
   webViewKey: string;
   onWebViewStateChange?: WebViewStateCallback;
+  onWebViewCreated?: (key: string, webView: InstWebView) => void;
 }
 export class InstWebView extends PureComponent<Props> {
   webView: RefObject<WebView>;
@@ -53,6 +56,7 @@ export class InstWebView extends PureComponent<Props> {
     super(props);
     console.log('InstWebView created: ' + props.uri);
     this.webView = React.createRef<WebView>();
+    props.onWebViewCreated?.call(null, props.webViewKey, this);
   }
   componentDidUpdate(prev: Props) {
     const uri = this.props.uri;
@@ -103,11 +107,11 @@ export class InstWebView extends PureComponent<Props> {
       if (this.props.onMessageData) {
         this.props.onMessageData(this.props.webViewKey, data);
       }
-    }
+    }*/
     if (this.webViewState === null || !webViewStateEquals(this.webViewState, newState)) {
       this.webViewState = newState;
       if (this.props.onWebViewStateChange) this.props.onWebViewStateChange(this.props.webViewKey, newState);
-    } */
+    }
   };
 
   goTo = (uri: string) => {
