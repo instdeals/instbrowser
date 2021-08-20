@@ -4,6 +4,7 @@ import TsUtils, { DeferredPromise } from '../tsCommon/TsUtils';
 import ScrollContext from '../nativeCommon/ScrollContext';
 import { Platform } from 'react-native';
 import { Callback } from '../tsCommon/baseTypes';
+import { Bookmark } from '../bookmarks/BookmarkModel';
 
 export interface UrlCallback {
   (key: string, url: string, title: string): void
@@ -12,6 +13,13 @@ export interface UrlCallback {
 export var UserAgent = (__DEV__ && Platform.OS === 'android') ?
   'Mozilla/5.0 (Linux; Android 9; ONEPLUS A3000 Build/PKQ1.181203.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3945.136 Mobile Safari/537.36'
   : undefined
+
+type MessageType = 'bookmark' | 'openUrl';
+
+export interface MessageData {
+  type: MessageType;
+  value?: any;
+}
 
 export interface WebViewStateCallback {
   (key: string, state: WebViewState): void
@@ -50,6 +58,7 @@ interface Props {
 export class InstWebView extends PureComponent<Props> {
   webView: RefObject<WebView>;
   webViewState: WebViewState = defaultWebViewState;
+  deferredBookmark?: DeferredPromise<Bookmark>;
 
   state = { uri: this.props.uri };
   constructor(props: Props) {
@@ -65,49 +74,33 @@ export class InstWebView extends PureComponent<Props> {
 
   getRef = () => this.webView;
 
+  getBookmark = (): Promise<Bookmark> => {
+    this.deferredBookmark = TsUtils.defer<Bookmark>();
+    const messageData: MessageData = { type: 'bookmark' };
+    const json = JSON.stringify(messageData);
+    this.webView.current?.injectJavaScript(`
+      window.ReactNativeWebView.postMessage('${json}');
+    `);
+    return this.deferredBookmark.promise!;
+  }
+
   onMessage = (event: SyntheticEvent) => {
     const newState = event.nativeEvent as WebViewState;
-    console.log(newState);
-    /*
     if (newState.data) {
       const data = JSON.parse(newState.data) as MessageData;
       console.log('Message Data Type: ' + data.type);
-      if (data.type == 'openUrl') {
-        this.setState({ uri: data.url! });
-      } else if (data.type === 'productDetail') {
+      if (data.type === 'openUrl') {
+        this.setState({ uri: data.value as string });
+      } else if (data.type === 'bookmark') {
         const ts = Date.now();
-        const product = data.productDetail;
-        if (!product) {
-          this.deferredBookmark!.resolve!({
-            createTimestamp: ts,
-            updateTimestamp: ts,
-            uri: newState.url,
-            title: newState.title,
-          });
-        } else {
-          console.log('productDetail:' + JSON.stringify(product));
-          this.deferredBookmark!.resolve!({
-            createTimestamp: ts,
-            updateTimestamp: ts,
-            uri: newState.url,
-            title: product.title,
-            icon: product.image,
-            productInfo: {
-              provider: data.provider!,
-              pricingAtCreation: {
-                listPrice: product.listPrice,
-                dealPrice: product.dealPrice,
-              },
-              reviewScore: product.reviewScore,
-              reviewNum: product.reviewNum,
-            }
-          });
-        }
-      }*
-      if (this.props.onMessageData) {
-        this.props.onMessageData(this.props.webViewKey, data);
+        this.deferredBookmark!.resolve!({
+          createTimestamp: ts,
+          updateTimestamp: ts,
+          uri: newState.url,
+          title: newState.title,
+        });
       }
-    }*/
+    }
     if (this.webViewState === null || !webViewStateEquals(this.webViewState, newState)) {
       this.webViewState = newState;
       if (this.props.onWebViewStateChange) this.props.onWebViewStateChange(this.props.webViewKey, newState);
@@ -150,6 +143,7 @@ export class InstWebView extends PureComponent<Props> {
       onLoadEnd={this.onLoadEnd}
       onLoadProgress={this.onLoadEnd}
       userAgent={UserAgent}
+      onMessage={this.onMessage}
       onLoadStart={this.onLoadStart} />}
     </ScrollContext.Consumer>
   }

@@ -1,4 +1,5 @@
 import React, { LegacyRef, useContext } from 'react';
+import { useCallback } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -8,8 +9,9 @@ import {
 } from 'react-native';
 
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
+import { BookmarkContext, BookmarkContextProvider } from './src/bookmarks/BookmarkContext';
 import NavigationContext, { NavigationContextProvider } from './src/contexts/NavigationContext';
-import { WebViewContextProvider } from './src/contexts/WebViewContext';
+import WebViewContext, { WebViewContextProvider } from './src/contexts/WebViewContext';
 import BottomBar, { BottomBarIcon } from './src/nativeCommon/BottomBar';
 import commonStyles from './src/nativeCommon/commonStyles';
 import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollContext';
@@ -28,10 +30,17 @@ const theme = {
 
 function AppInner() {
   const { api: navigation, state: navState } = useContext(NavigationContext)!;
+  const { state: { currentWebView } } = useContext(WebViewContext)!;
+  const { api: bookmarkApi } = useContext(BookmarkContext)!;
+  const addBookmark = useCallback(() => {
+    currentWebView?.getBookmark().then(bm => {
+      bookmarkApi.addBookmark(bm);
+    });
+  }, [currentWebView]);
   const bottomBar = () => <BottomBar>
     <BottomBarIcon key='backward' name='chevron-left' onPress={navigation.goBack}
       disabled={!navState.canGoBack} />
-    <BottomBarIcon key='heart' name='heart' onPress={doNothing} />
+    <BottomBarIcon key='heart' name='heart' onPress={addBookmark} disabled={!currentWebView} />
     <BottomBarIcon key='home' name='home' onPress={doNothing} />
     <BottomBarIcon key='user' name='user' onPress={doNothing} />
   </BottomBar>;
@@ -75,9 +84,9 @@ export default function App() {
   return <PaperProvider theme={theme}>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <WebViewContextProvider><NavigationContextProvider>
+      <WebViewContextProvider><NavigationContextProvider><BookmarkContextProvider>
         <AppInner />
-      </NavigationContextProvider></WebViewContextProvider>
+      </BookmarkContextProvider></NavigationContextProvider></WebViewContextProvider>
     </SafeAreaView>
   </PaperProvider>
 }
