@@ -40,6 +40,8 @@ function AppInner() {
   const bottomBar = () => <BottomBar>
     <BottomBarIcon key='backward' name='chevron-left' onPress={navigation.goBack}
       disabled={!navState.canGoBack} />
+    <BottomBarIcon key='forward' name='chevron-right' onPress={navigation.goForward}
+      disabled={!navState.canGoForward} />
     <BottomBarIcon key='heart' name='heart' onPress={addBookmark} disabled={!currentWebView} />
     <BottomBarIcon key='home' name='home' onPress={doNothing} />
     <BottomBarIcon key='user' name='user' onPress={doNothing} />

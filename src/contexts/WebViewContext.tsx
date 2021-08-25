@@ -22,6 +22,14 @@ export class WebViewContextApi extends StateApi<WebViewContextState> {
     this.state.currentWebView?.goBack();
   }
 
+  canGoForward() {
+    return this.state.webViewState.canGoForward;
+  }
+
+  goForward() {
+    this.state.currentWebView?.goForward();
+  }
+
   setCurrentWebView(webView: InstWebView | undefined) {
     if (webView !== this.state.currentWebView) {
       this.setState({ ...this.state, currentWebView: webView });

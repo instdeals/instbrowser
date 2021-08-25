@@ -12,10 +12,12 @@ export interface Navigable {
 export interface NavigationState {
   webViewAtFront: boolean;
   canGoBack: boolean;
+  canGoForward: boolean;
 }
 
 const defaultState: NavigationState = {
   canGoBack: false,
+  canGoForward: false,
   webViewAtFront: false,
 }
 
@@ -28,23 +30,32 @@ export class Api extends StateApi<NavigationState> {
     super(state, setState);
     this.webViewContextApi = webViewContextApi;
   }
+  debugState(state: NavigationState) {
+    console.log('NavigationContext:' + JSON.stringify(state));
+  }
   goBack = () => {
     if (this.webViewContextApi.canGoBack()) {
-      console.log('goBack from webview');
       this.webViewContextApi.goBack();
       return true;
     }
     return false;
   }
+  goForward = () => {
+    if (this.webViewContextApi.canGoForward()) {
+      this.webViewContextApi.goForward();
+      return true;
+    }
+    return false;
+  }
   goHome = () => {
-    this.setCanGoBack(false);
+    this.setCanGoBackAndForward(false, false);
   }
   goSearch = (searchQuery: string) => {
   }
 
-  setCanGoBack(canGoBack: boolean) {
-    if (canGoBack !== this.state.canGoBack) {
-      this.setState({ ...this.state, canGoBack });
+  setCanGoBackAndForward(canGoBack: boolean, canGoForward: boolean) {
+    if (canGoBack !== this.state.canGoBack || canGoForward !== this.state.canGoForward) {
+      this.setState({ ...this.state, canGoBack, canGoForward });
     }
   }
 
@@ -60,7 +71,7 @@ export default NavigationContext;
 export function NavigationContextProvider(props: { children: ReactNode }) {
   const [state, setState] = useState(defaultState);
   const {
-    state: { webViewState: { canGoBack: webViewCanGoBack } },
+    state: { webViewState: { canGoBack: webViewCanGoBack, canGoForward } },
     api: webViewContextApi,
   } = useContext(WebViewContext)!;
   const api = useMemo(() => new Api(webViewContextApi, defaultState, setState), [webViewContextApi]);
@@ -72,7 +83,7 @@ export function NavigationContextProvider(props: { children: ReactNode }) {
     return false;
   }();
 
-  useEffect(() => api.setCanGoBack(canGoBack), [canGoBack]);
+  useEffect(() => api.setCanGoBackAndForward(canGoBack, canGoForward), [canGoBack, canGoForward]);
   useEffect(() => api.setWebViewAtFront(webViewAtFront), [webViewAtFront]);
 
   // back handler 
