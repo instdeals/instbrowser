@@ -1,6 +1,6 @@
 import React, { ReactNodeArray, useState } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { View, StyleSheet, Text, Platform, TouchableHighlight } from 'react-native';
 import { Callback } from '../tsCommon/baseTypes';
 import { logUiAction } from './Analytics';
 import NativeUtils from './NativeUtils';
@@ -20,7 +20,7 @@ export default function BottomBar(props: Props) {
   }
 
   const firstBatch = [...children.slice(0, 2),
-  <BottomBarIcon key='showMoreActions' name={showMoreActions ? 'x' : 'more-horizontal'}
+  <BottomBarItem key='showMoreActions' name={showMoreActions ? 'x' : 'more-horizontal'}
     onPress={() => setShowMoreActions(!showMoreActions)} />,
   ...children.slice(2, 4)];
   if (!showMoreActions) {
@@ -33,14 +33,14 @@ export default function BottomBar(props: Props) {
   </View>;
 }
 
-interface BottomBarIconProps {
+interface BottomBarItemProps {
   disabled?: boolean,
-  name: string,
+  name?: string,
   label?: string,
   onPress: Callback<void>,
   onLongPress?: Callback<void>,
 }
-export function BottomBarIcon(props: BottomBarIconProps) {
+export function BottomBarItem(props: BottomBarItemProps) {
   const { label, disabled, name, onPress, onLongPress } = props;
   const handlePress = () => {
     logUiAction(`bottomIcon-${name}`, `click-${disabled}`);
@@ -49,14 +49,13 @@ export function BottomBarIcon(props: BottomBarIconProps) {
   const handleLongPress = () => {
     if (!disabled && onLongPress) onLongPress();
   }
-  if (label) {
-    return <View style={{ flexDirection: 'column' }}><Icon style={disabled ? styles.bottomIconDisabled : styles.bottomIcon}
-      name={name} size={24} onPress={handlePress} onLongPress={handleLongPress} />
-      <Text>{label}</Text>
+  return <TouchableHighlight onPress={handlePress} onLongPress={handleLongPress} >
+    <View style={{ flexDirection: 'column' }}>
+      {name && <Icon style={disabled ? styles.bottomIconDisabled : styles.bottomIcon}
+        name={name} size={24} />}
+      {label && <Text>{label}</Text>}
     </View>
-  }
-  return <Icon style={disabled ? styles.bottomIconDisabled : styles.bottomIcon}
-    name={name} size={24} onPress={handlePress} onLongPress={handleLongPress} />
+  </TouchableHighlight>;
 }
 
 const styles = StyleSheet.create({

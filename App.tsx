@@ -1,8 +1,11 @@
 import React, { LegacyRef, useContext } from 'react';
+import { useState } from 'react';
 import { useCallback } from 'react';
 import {
+  Dimensions,
   SafeAreaView,
   StatusBar,
+  StyleSheet,
   Text,
   useColorScheme,
   View,
@@ -12,12 +15,12 @@ import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { BookmarkContext, BookmarkContextProvider } from './src/bookmarks/BookmarkContext';
 import NavigationContext, { NavigationContextProvider } from './src/contexts/NavigationContext';
 import WebViewContext, { WebViewContextProvider } from './src/contexts/WebViewContext';
-import BottomBar, { BottomBarIcon } from './src/nativeCommon/BottomBar';
+import BottomBar, { BottomBarItem } from './src/nativeCommon/BottomBar';
 import commonStyles from './src/nativeCommon/commonStyles';
 import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollContext';
+import { WebTabContextProvider } from './src/tabs/WebTabContext';
+import WebTabView, { WebTabSummaryListView } from './src/tabs/WebTabView';
 import { doNothing } from './src/tsCommon/baseTypes';
-import { InstWebView, WebViewStateCallback } from './src/webView/InstWebView';
-import InstWebViewHolder from './src/webView/InstWebViewHolder';
 
 const theme = {
   ...DefaultTheme,
@@ -37,37 +40,30 @@ function AppInner() {
       bookmarkApi.addBookmark(bm);
     });
   }, [currentWebView]);
+  const [tabsShown, setTabsShown] = useState(false);
+
+  const showTabs = useCallback(() => {
+    setTabsShown(true);
+  }, []);
   const bottomBar = () => <BottomBar>
-    <BottomBarIcon key='backward' name='chevron-left' onPress={navigation.goBack}
+    <BottomBarItem key='backward' name='chevron-left' onPress={navigation.goBack}
       disabled={!navState.canGoBack} />
-    <BottomBarIcon key='forward' name='chevron-right' onPress={navigation.goForward}
+    <BottomBarItem key='forward' name='chevron-right' onPress={navigation.goForward}
       disabled={!navState.canGoForward} />
-    <BottomBarIcon key='heart' name='heart' onPress={addBookmark} disabled={!currentWebView} />
-    <BottomBarIcon key='home' name='home' onPress={doNothing} />
-    <BottomBarIcon key='user' name='user' onPress={doNothing} />
+    <BottomBarItem key='heart' name='heart' onPress={addBookmark} disabled={!currentWebView} />
+    <BottomBarItem key='tabs' name='plus-square' onPress={showTabs} />
+    <BottomBarItem key='user' name='user' onPress={doNothing} />
   </BottomBar>;
 
-  const routes = [
-    { key: 'Main', title: 'main' }
-  ];
-
-  const renderSceneByKey = (key: string,
-    onWebViewStateChange: WebViewStateCallback,
-    ref: LegacyRef<InstWebView>) => {
-    return 'https://bing.com';
-  }
-
   return <ScrollViewProvider>
+    {tabsShown && <View style={styles.secondaryContent}>
+      <WebTabSummaryListView onDone={() => setTabsShown(false)} />
+    </View>}
     <View style={commonStyles.flexCol1}>
       <AutoHideView contentHeight={25}>
         <Text>Address Bar Goes Here</Text>
       </AutoHideView>
-      <InstWebViewHolder
-        routes={routes}
-        defaultIndex={0}
-        hideTabBar={true}
-        renderSceneByKey={renderSceneByKey}
-      />
+      <WebTabView />
       <AutoHideView contentHeight={40}>
         {bottomBar()}
       </AutoHideView>
@@ -86,9 +82,18 @@ export default function App() {
   return <PaperProvider theme={theme}>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <WebViewContextProvider><NavigationContextProvider><BookmarkContextProvider>
+      <WebViewContextProvider><NavigationContextProvider><BookmarkContextProvider><WebTabContextProvider>
         <AppInner />
-      </BookmarkContextProvider></NavigationContextProvider></WebViewContextProvider>
+      </WebTabContextProvider></BookmarkContextProvider></NavigationContextProvider></WebViewContextProvider>
     </SafeAreaView>
   </PaperProvider>
 }
+
+const viewHeight = Dimensions.get('window').height;
+const styles = StyleSheet.create({
+  secondaryContent: {
+    backgroundColor: 'white',
+    height: viewHeight,
+    width: '100%',
+  }
+})
