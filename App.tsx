@@ -21,6 +21,7 @@ import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollConte
 import { WebTabContextProvider } from './src/tabs/WebTabContext';
 import WebTabView, { WebTabSummaryListView } from './src/tabs/WebTabView';
 import { doNothing } from './src/tsCommon/baseTypes';
+import TestView from './src/webView/TestView';
 
 const theme = {
   ...DefaultTheme,
@@ -63,7 +64,7 @@ function AppInner() {
       <AutoHideView contentHeight={25}>
         <Text>Address Bar Goes Here</Text>
       </AutoHideView>
-      <WebTabView />
+      <TestView />
       <AutoHideView contentHeight={40}>
         {bottomBar()}
       </AutoHideView>

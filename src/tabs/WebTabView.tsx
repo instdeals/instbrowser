@@ -10,24 +10,15 @@ import { WebTab, WebViewTabContext } from "./WebTabContext";
 
 export default function WebTabView() {
   const { state: { tabs } } = useContext(WebViewTabContext)!;
-  const [routes, render] = useMemo(() => {
-    const routes = tabs.filter(t => t.loaded);
-    const keyToUrl = ArrayUtils.buildMapV2(
-      routes, r => r.key, r => r.bookmark.uri) as StringMap<string>;
-    const render = (key: string,
-      onWebViewStateChange: WebViewStateCallback,
-      onWebViewCreated: (key: string, webView: InstWebView) => void): string => {
-      return keyToUrl[key] || 'https://www.bing.com';
-    };
-    return [routes, render];
+  const routes = useMemo(() => {
+    return tabs.filter(t => t.loaded);
   }, [tabs]);
 
   if (routes.length === 0) return <View />;
 
   return <InstWebViewHolder
     routes={routes}
-    defaultIndex={0}
-    renderSceneByKey={render} />
+    defaultIndex={0} />
 }
 
 function WebTabSummaryView(props: { tab: WebTab }) {

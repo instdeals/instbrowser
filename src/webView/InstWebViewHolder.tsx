@@ -1,38 +1,35 @@
-import React, { ReactNode, LegacyRef } from 'react';
+import React from 'react';
 import { WebViewState, InstWebView, defaultWebViewState, WebViewStateCallback } from './InstWebView';
-import { TabView, SceneRendererProps, NavigationState, Route } from 'react-native-tab-view';
-// import { TabBar } from '../SimpleViews';
+import { TabView, Route } from 'react-native-tab-view';
 import { Dimensions } from 'react-native';
 import WebViewContext, { WebViewContextApi, WebViewContextState } from '../contexts/WebViewContext';
+import { doNothing } from '../tsCommon/baseTypes';
+import { WebTab } from '../tabs/WebTabContext';
 
 const viewWidth = Dimensions.get('window').width;
 const initialLayout = { width: viewWidth };
 
 interface Props {
-  hideTabBar?: boolean,
-  renderSceneByKey: (key: string,
-    onWebViewStateChange: WebViewStateCallback,
-    onWebViewCreated: (key: string, webView: InstWebView) => void) => ReactNode | string,
-  routes: Array<Route>,
-  defaultIndex?: number,
+  routes: Array<WebTab>;
+  defaultIndex?: number;
+  onWebViewStateChange?: WebViewStateCallback;
 }
 export default class InstWebViewHolder extends React.PureComponent<Props> {
   webViews = new Map<string, InstWebView | null>();
-  state = { index: this.props.defaultIndex || 0, routes: [...this.props.routes] };
+  state = {
+    index: this.props.defaultIndex || 0,
+    routes: [...this.props.routes],
+  };
 
   buildRoutes = (next: Array<Route>, current: Array<Route>, index: number) => {
     const currentRoute = current[index];
-    const nextIndex = next.findIndex(r => r.key === currentRoute.key);
-    if (nextIndex === -1) {
-      const routes = [...next, currentRoute];
-      this.setState({ index: routes.length - 1, routes });
-    } else {
-      this.setState({ index: nextIndex, routes: next });
-    }
+    let nextIndex = next.findIndex(r => r.key === currentRoute.key);
+    if (nextIndex === -1) nextIndex = next.length - 1;
+    this.setState({ index: nextIndex, routes: next });
   }
 
   componentDidUpdate = (prevProps: Props) => {
-    if (prevProps.routes.length != this.props.routes.length) {
+    if (prevProps.routes.length !== this.props.routes.length) {
       this.buildRoutes(this.props.routes, this.state.routes, this.state.index);
     }
   }
@@ -42,6 +39,7 @@ export default class InstWebViewHolder extends React.PureComponent<Props> {
   }
 
   passThroughWebViewStateIfCurrent = (key: string, state: WebViewState) => {
+    this.props.onWebViewStateChange?.call(null, key, state);
     if (key === this.state.routes[this.state.index].key) {
       // console.log(state);
       this.getContext().api.setWebViewState(state);
@@ -60,17 +58,11 @@ export default class InstWebViewHolder extends React.PureComponent<Props> {
       api.setWebViewState(current.webViewState);
       api.setCurrentWebView(current);
       const currentUrl = current.url();
-      if (!!url && (currentUrl === '' || url != currentUrl)) current.goTo(url);
+      if (!!url && url != currentUrl) current.goTo(url);
     }
   }
-  renderTabBar = (props: SceneRendererProps & { navigationState: NavigationState<Route> }) => {
-    return null;
-    /*return this.props.hideTabBar ? null : <TabBar onTabPress={(index) => {
-      const tabName = this.state.routes[index].title;
-      logUiAction(`WebViewTab-${tabName}`, 'switch');
-      this.switchTo(index);
-    }} {...props} />*/
-  }
+
+  currentIndex = () => this.state.index;
 
   private onWebViewCreated = (key: string, webView: InstWebView) => {
     this.webViews.set(key, webView);
@@ -79,18 +71,12 @@ export default class InstWebViewHolder extends React.PureComponent<Props> {
     }
   }
 
-  renderScene = ({ route }: { route: Route }) => {
+  renderScene = ({ route }: { route: WebTab }) => {
     const key = route.key;
-    const sceneOrUrl = this.props.renderSceneByKey(
-      key, this.passThroughWebViewStateIfCurrent, this.onWebViewCreated);
-    if (typeof sceneOrUrl === 'string') {
-      const url = sceneOrUrl as string;
-      return <InstWebView uri={url} webViewKey={key} key={key}
-        onWebViewStateChange={this.passThroughWebViewStateIfCurrent}
-        onWebViewCreated={this.onWebViewCreated} />
-    } else {
-      return sceneOrUrl as ReactNode;
-    }
+    const url = route.bookmark.uri;
+    return <InstWebView uri={url} webViewKey={key} key={key}
+      onWebViewStateChange={this.passThroughWebViewStateIfCurrent}
+      onWebViewCreated={this.onWebViewCreated} />
   }
 
   render() {
@@ -98,7 +84,7 @@ export default class InstWebViewHolder extends React.PureComponent<Props> {
       lazy={true}
       swipeEnabled={false}
       navigationState={this.state}
-      renderTabBar={this.renderTabBar}
+      renderTabBar={doNothing}
       renderScene={this.renderScene}
       onIndexChange={this.switchTo}
       initialLayout={initialLayout}
