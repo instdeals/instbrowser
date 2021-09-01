@@ -3,8 +3,9 @@ import { WebViewState, InstWebView, defaultWebViewState, WebViewStateCallback } 
 import { TabView, Route } from 'react-native-tab-view';
 import { Dimensions } from 'react-native';
 import WebViewContext, { WebViewContextApi, WebViewContextState } from '../contexts/WebViewContext';
-import { doNothing } from '../tsCommon/baseTypes';
+import { doNothing, StringMap } from '../tsCommon/baseTypes';
 import { WebTab } from '../tabs/WebTabContext';
+import ArrayUtils from '../tsCommon/ArrayUtils';
 
 const viewWidth = Dimensions.get('window').width;
 const initialLayout = { width: viewWidth };
@@ -29,8 +30,21 @@ export default class InstWebViewHolder extends React.PureComponent<Props> {
   }
 
   componentDidUpdate = (prevProps: Props) => {
-    if (prevProps.routes.length !== this.props.routes.length) {
+    const prevNumRoutes = prevProps.routes.length;
+    const numRoutes = this.props.routes.length;
+    if (prevNumRoutes > numRoutes) {
+      // closing tab
       this.buildRoutes(this.props.routes, this.state.routes, this.state.index);
+      // remove stale webviews
+      const routeKeys = ArrayUtils.buildMapV2(this.props.routes, r => r.key, r => true) as StringMap<boolean>;
+      const removedKeys: string[] = [];
+      for (const key in this.webViews.keys()) {
+        if (routeKeys[key] !== true) removedKeys.push(key);
+      }
+      removedKeys.forEach(k => this.webViews.delete(k));
+    } else if (prevNumRoutes < numRoutes) {
+      // adding new tab
+      this.setState({ routes: [...this.props.routes] });
     }
   }
 
