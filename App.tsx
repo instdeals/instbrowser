@@ -1,11 +1,8 @@
 import React, { LegacyRef, useContext } from 'react';
-import { useState } from 'react';
 import { useCallback } from 'react';
 import {
-  Dimensions,
   SafeAreaView,
   StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
   View,
@@ -13,15 +10,16 @@ import {
 
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { BookmarkContext, BookmarkContextProvider } from './src/bookmarks/BookmarkContext';
-import NavigationContext, { Api, NavigationContextProvider } from './src/contexts/NavigationContext';
+import NavigationContext, { NavigationContextProvider } from './src/contexts/NavigationContext';
 import WebViewContext, { WebViewContextProvider } from './src/contexts/WebViewContext';
 import I18nResources from './src/I18nResources';
 import BottomBar, { BottomBarItem } from './src/nativeCommon/BottomBar';
 import commonStyles from './src/nativeCommon/commonStyles';
 import { i18nInit } from './src/nativeCommon/i18n';
 import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollContext';
+import SecondaryContentView from './src/SecondaryContentView';
 import { WebTabContextProvider, WebViewTabContext } from './src/tabs/WebTabContext';
-import WebTabView, { WebTabSummaryListView } from './src/tabs/WebTabView';
+import WebTabView from './src/tabs/WebTabView';
 import { doNothing } from './src/tsCommon/baseTypes';
 
 i18nInit(I18nResources);
@@ -36,10 +34,10 @@ const theme = {
 };
 
 function AppInner() {
-  const { api: navigation, state: navState } = useContext(NavigationContext)!;
+  const { api: navApi, state: navState } = useContext(NavigationContext)!;
   const { state: { currentWebView } } = useContext(WebViewContext)!;
   const { api: bookmarkApi } = useContext(BookmarkContext)!;
-  const { state: { tabsShown }, api: tabApi } = useContext(WebViewTabContext)!;
+  const { api: tabApi } = useContext(WebViewTabContext)!;
   const addBookmark = useCallback(() => {
     currentWebView?.getBookmark().then(bm => {
       bookmarkApi.addBookmark(bm);
@@ -47,19 +45,19 @@ function AppInner() {
   }, [currentWebView]);
 
   const bottomBar = () => <BottomBar>
-    <BottomBarItem key='backward' name='chevron-left' onPress={navigation.goBack}
+    <BottomBarItem key='backward' name='chevron-left' onPress={navApi.goBack}
       disabled={!navState.canGoBack} />
-    <BottomBarItem key='forward' name='chevron-right' onPress={navigation.goForward}
+    <BottomBarItem key='forward' name='chevron-right' onPress={navApi.goForward}
       disabled={!navState.canGoForward} />
-    <BottomBarItem key='heart' name='heart' onPress={addBookmark} disabled={!currentWebView} />
-    <BottomBarItem key='tabs' name='plus-square' onPress={() => tabApi.setTabsShown(true)} />
+    <BottomBarItem key='heart' name='heart'
+      onPress={() => navApi.setShownContent('bookmarks')}
+      onLongPress={addBookmark} disabled={!currentWebView} />
+    <BottomBarItem key='tabs' name='plus-square' onPress={() => navApi.setShownContent('tabs')} />
     <BottomBarItem key='user' name='user' onPress={doNothing} />
   </BottomBar>;
 
   return <ScrollViewProvider>
-    {tabsShown && <View style={styles.secondaryContent}>
-      <WebTabSummaryListView />
-    </View>}
+    <SecondaryContentView />
     <View style={commonStyles.flexCol1}>
       <AutoHideView contentHeight={25}>
         <Text>Address Bar Goes Here</Text>
@@ -90,11 +88,3 @@ export default function App() {
   </PaperProvider>
 }
 
-const viewHeight = Dimensions.get('window').height;
-const styles = StyleSheet.create({
-  secondaryContent: {
-    backgroundColor: 'white',
-    height: viewHeight,
-    width: '100%',
-  }
-})

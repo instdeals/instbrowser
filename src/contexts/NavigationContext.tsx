@@ -9,10 +9,14 @@ export interface Navigable {
   goBack: Callback<void>,
 }
 
+
+export type SecondaryContentType = 'tabs' | 'bookmarks';
+
 export interface NavigationState {
   webViewAtFront: boolean;
   canGoBack: boolean;
   canGoForward: boolean;
+  shownContent?: SecondaryContentType;
 }
 
 const defaultState: NavigationState = {
@@ -30,6 +34,11 @@ export class Api extends StateApi<NavigationState> {
     super(state, setState);
     this.webViewContextApi = webViewContextApi;
   }
+
+  setShownContent = (type: SecondaryContentType | undefined) => {
+    this.setState({ ...this.state, shownContent: type });
+  }
+
   debugState(state: NavigationState) {
     console.log('NavigationContext:' + JSON.stringify(state));
   }

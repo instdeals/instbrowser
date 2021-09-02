@@ -14,14 +14,13 @@ export interface WebTab {
   bookmark: Bookmark;
 }
 
+
 export interface State {
   tabs: WebTab[];
-  tabsShown: boolean;
 }
 
 const defaultState: State = {
   tabs: [],
-  tabsShown: false,
 }
 
 function defaultTab(): WebTab {
@@ -45,13 +44,8 @@ class Api extends StateApi<State> {
     this.wvHolder = createRef<InstWebViewHolder>();
   }
 
-  setTabsShown = (shown: boolean) => {
-    this.setState({ ...this.state, tabsShown: shown });
-  }
-
   switchTab = (index: number) => {
     this.wvHolder.current?.switchTo(index);
-    this.setTabsShown(false);
   }
 
   debugState(state: State) {

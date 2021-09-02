@@ -108,7 +108,9 @@ export class InstWebView extends PureComponent<Props> {
   };
 
   goTo = (uri: string) => {
-    this.setState({ uri });
+    this.webView.current?.injectJavaScript(`
+      window.location = '${uri}';
+    `);
   }
 
   goBack = () => {
