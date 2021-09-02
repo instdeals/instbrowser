@@ -11,7 +11,7 @@ const defaultState: WebViewContextState = {
 }
 export class WebViewContextApi extends StateApi<WebViewContextState> {
   debugState(state: WebViewContextState) {
-    console.log('WebViewContext:' + JSON.stringify(state.webViewState));
+    // console.log('WebViewContext:' + JSON.stringify(state.webViewState));
   }
 
   canGoBack() {

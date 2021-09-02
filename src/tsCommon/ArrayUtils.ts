@@ -1,4 +1,4 @@
-import { NumberMap, RetCallback, StringMap } from "./baseTypes";
+import { Callback, NumberMap, RetCallback, StringMap } from "./baseTypes";
 
 export type MoveArrayItemType = 'BEGIN' | 'END' | 'PREV' | 'NEXT';
 

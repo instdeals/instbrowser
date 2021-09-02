@@ -13,17 +13,16 @@ import {
 
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { BookmarkContext, BookmarkContextProvider } from './src/bookmarks/BookmarkContext';
-import NavigationContext, { NavigationContextProvider } from './src/contexts/NavigationContext';
+import NavigationContext, { Api, NavigationContextProvider } from './src/contexts/NavigationContext';
 import WebViewContext, { WebViewContextProvider } from './src/contexts/WebViewContext';
 import I18nResources from './src/I18nResources';
 import BottomBar, { BottomBarItem } from './src/nativeCommon/BottomBar';
 import commonStyles from './src/nativeCommon/commonStyles';
 import { i18nInit } from './src/nativeCommon/i18n';
 import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollContext';
-import { WebTabContextProvider } from './src/tabs/WebTabContext';
+import { WebTabContextProvider, WebViewTabContext } from './src/tabs/WebTabContext';
 import WebTabView, { WebTabSummaryListView } from './src/tabs/WebTabView';
 import { doNothing } from './src/tsCommon/baseTypes';
-import TestView from './src/webView/TestView';
 
 i18nInit(I18nResources);
 
@@ -40,35 +39,32 @@ function AppInner() {
   const { api: navigation, state: navState } = useContext(NavigationContext)!;
   const { state: { currentWebView } } = useContext(WebViewContext)!;
   const { api: bookmarkApi } = useContext(BookmarkContext)!;
+  const { state: { tabsShown }, api: tabApi } = useContext(WebViewTabContext)!;
   const addBookmark = useCallback(() => {
     currentWebView?.getBookmark().then(bm => {
       bookmarkApi.addBookmark(bm);
     });
   }, [currentWebView]);
-  const [tabsShown, setTabsShown] = useState(false);
 
-  const showTabs = useCallback(() => {
-    setTabsShown(true);
-  }, []);
   const bottomBar = () => <BottomBar>
     <BottomBarItem key='backward' name='chevron-left' onPress={navigation.goBack}
       disabled={!navState.canGoBack} />
     <BottomBarItem key='forward' name='chevron-right' onPress={navigation.goForward}
       disabled={!navState.canGoForward} />
     <BottomBarItem key='heart' name='heart' onPress={addBookmark} disabled={!currentWebView} />
-    <BottomBarItem key='tabs' name='plus-square' onPress={showTabs} />
+    <BottomBarItem key='tabs' name='plus-square' onPress={() => tabApi.setTabsShown(true)} />
     <BottomBarItem key='user' name='user' onPress={doNothing} />
   </BottomBar>;
 
   return <ScrollViewProvider>
     {tabsShown && <View style={styles.secondaryContent}>
-      <WebTabSummaryListView onDone={() => setTabsShown(false)} />
+      <WebTabSummaryListView />
     </View>}
     <View style={commonStyles.flexCol1}>
       <AutoHideView contentHeight={25}>
         <Text>Address Bar Goes Here</Text>
       </AutoHideView>
-      <TestView />
+      <WebTabView />
       <AutoHideView contentHeight={40}>
         {bottomBar()}
       </AutoHideView>

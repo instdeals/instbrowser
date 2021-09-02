@@ -41,7 +41,7 @@ export default function TestView() {
     if (routeToUpdate) {
       routeToUpdate.bookmark = {
         ...routeToUpdate.bookmark,
-        // uri: wvState.url,
+        currentUri: wvState.url,
         title: wvState.title,
       }
       setRoutes(newRoutes);

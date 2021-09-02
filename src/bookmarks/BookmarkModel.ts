@@ -4,6 +4,9 @@ export interface Bookmark {
   createTimestamp: number;
   updateTimestamp: number;
   uri: string;
+  // When bookmark is used as state of webview, webview is created with uri and currentUri stores 
+  // the current uri the webview is rendering.
+  currentUri?: string;
   title: string;
   icon?: string;
   screenshot?: string;

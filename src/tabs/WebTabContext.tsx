@@ -1,9 +1,12 @@
-import React, { ReactNode, useContext, useMemo, useState } from "react";
+import React, { createRef, ReactNode, RefObject, useContext, useMemo, useState } from "react";
 import { useEffect } from "react";
 import { View } from "react-native";
 import { Bookmark } from "../bookmarks/BookmarkModel";
 import { createStateApiContext, StateApi } from "../reactCommon/ContextBase";
+import { Callback } from "../tsCommon/baseTypes";
 import TimeUtils from "../tsCommon/TimeUtils";
+import { WebViewState } from "../webView/InstWebView";
+import InstWebViewHolder from "../webView/InstWebViewHolder";
 
 export interface WebTab {
   key: string;
@@ -13,10 +16,12 @@ export interface WebTab {
 
 export interface State {
   tabs: WebTab[];
+  tabsShown: boolean;
 }
 
 const defaultState: State = {
   tabs: [],
+  tabsShown: false,
 }
 
 function defaultTab(): WebTab {
@@ -34,14 +39,46 @@ function defaultTab(): WebTab {
 }
 
 class Api extends StateApi<State> {
+  wvHolder: RefObject<InstWebViewHolder>;
+  constructor(state: State, setState: Callback<State>) {
+    super(state, setState);
+    this.wvHolder = createRef<InstWebViewHolder>();
+  }
+
+  setTabsShown = (shown: boolean) => {
+    this.setState({ ...this.state, tabsShown: shown });
+  }
+
+  switchTab = (index: number) => {
+    this.wvHolder.current?.switchTo(index);
+    this.setTabsShown(false);
+  }
+
+  debugState(state: State) {
+    // console.log('WebTabContext:' + JSON.stringify(state));
+  }
+  updateWebViewState = (key: string, state: WebViewState) => {
+    const tabs = [...this.state.tabs];
+    const index = tabs.findIndex(t => t.key === key);
+    if (index === -1) {
+      console.log('WebTab key not found', key);
+      return;
+    }
+    tabs[index].bookmark.title = state.title;
+    tabs[index].bookmark.currentUri = state.url;
+    this.setState({ ...this.state, tabs });
+  }
+
   newTab = () => {
     this.setState({
+      ...this.state,
       tabs: [...this.state.tabs, defaultTab()],
     });
   }
 
   closeAll = () => {
     this.setState({
+      ...this.state,
       tabs: [defaultTab()],
     });
   }
