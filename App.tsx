@@ -15,13 +15,17 @@ import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { BookmarkContext, BookmarkContextProvider } from './src/bookmarks/BookmarkContext';
 import NavigationContext, { NavigationContextProvider } from './src/contexts/NavigationContext';
 import WebViewContext, { WebViewContextProvider } from './src/contexts/WebViewContext';
+import I18nResources from './src/I18nResources';
 import BottomBar, { BottomBarItem } from './src/nativeCommon/BottomBar';
 import commonStyles from './src/nativeCommon/commonStyles';
+import { i18nInit } from './src/nativeCommon/i18n';
 import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollContext';
 import { WebTabContextProvider } from './src/tabs/WebTabContext';
 import WebTabView, { WebTabSummaryListView } from './src/tabs/WebTabView';
 import { doNothing } from './src/tsCommon/baseTypes';
 import TestView from './src/webView/TestView';
+
+i18nInit(I18nResources);
 
 const theme = {
   ...DefaultTheme,

@@ -8,5 +8,4 @@ if (
 ) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
-
 AppRegistry.registerComponent(appName, () => App);
