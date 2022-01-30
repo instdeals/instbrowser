@@ -39,6 +39,10 @@ export class WebViewContextApi extends StateApi<WebViewContextState> {
   setWebViewState(state: WebViewState) {
     this.setState({ ...this.state, webViewState: state });
   }
+
+  goTo(uri: string) {
+    this.state.currentWebView?.goTo(uri);
+  }
 }
 
 const WebViewContext = createStateApiContext<WebViewContextState, WebViewContextApi>();

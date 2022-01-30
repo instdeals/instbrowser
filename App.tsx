@@ -18,6 +18,7 @@ import SecondaryContentView from './src/SecondaryContentView';
 import { WebTabContextProvider, WebViewTabContext } from './src/tabs/WebTabContext';
 import WebTabView from './src/tabs/WebTabView';
 import { doNothing } from './src/tsCommon/baseTypes';
+import AddressBar from './src/addressBar/AddressBar';
 
 i18nInit(I18nResources);
 
@@ -47,11 +48,9 @@ function AppInner() {
   return <ScrollViewProvider>
     <SecondaryContentView />
     <View style={commonStyles.flexCol1}>
-      <AutoHideView contentHeight={25}>
-        <Text>Address Bar Goes Here</Text>
-      </AutoHideView>
       <WebTabView />
-      <AutoHideView contentHeight={40}>
+      <AutoHideView contentHeight={70}>
+        <AddressBar />
         {bottomBar()}
       </AutoHideView>
     </View>
