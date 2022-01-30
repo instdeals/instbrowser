@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { Text, TouchableHighlight, View } from "react-native";
 import NavigationContext from "../contexts/NavigationContext";
-import BottomBar, { BottomBarItem } from "../nativeCommon/BottomBar";
+import BottomBar, { BottomBarItem } from "../views/BottomBar";
 import commonStyles from "../nativeCommon/commonStyles";
 import InstWebViewHolder from "../webView/InstWebViewHolder";
 import { WebTab, WebViewTabContext } from "./WebTabContext";

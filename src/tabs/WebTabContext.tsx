@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { Bookmark } from "../bookmarks/BookmarkModel";
 import { createStateApiContext, StateApi } from "../reactCommon/ContextBase";
 import { Callback } from "../tsCommon/baseTypes";
-import TimeUtils from "../tsCommon/TimeUtils";
+import TimeUtil from "../tsCommon/TimeUtil";
 import { WebViewState } from "../webView/InstWebView";
 import InstWebViewHolder from "../webView/InstWebViewHolder";
 
@@ -24,7 +24,7 @@ const defaultState: State = {
 }
 
 function defaultTab(): WebTab {
-  const now = TimeUtils.tsInSeconds();
+  const now = TimeUtil.tsInSeconds();
   return {
     key: `${now}`,
     loaded: true,

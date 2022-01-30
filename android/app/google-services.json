@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "923271693774",
+    "firebase_url": "https://instdeals-8cd83.firebaseio.com",
+    "project_id": "instdeals-8cd83",
+    "storage_bucket": "instdeals-8cd83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923271693774:android:a440735af9d3ab180d579f",
+        "android_client_info": {
+          "package_name": "com.instdeals.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923271693774-66gjj365tlq04gv31lu3qtlrn1o3ncmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.instdeals.app",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "923271693774-ekq7in7remempe4kmavl63k1lmqkd0op.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.instdeals.app",
+            "certificate_hash": "e0172692f2c42de969af09c3fa2719772d7a669d"
+          }
+        },
+        {
+          "client_id": "923271693774-pvos31piojan0lvcq2mh488utr1mlvli.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.instdeals.app",
+            "certificate_hash": "be5f527a91406d42de3570efd074158d069f0ab3"
+          }
+        },
+        {
+          "client_id": "923271693774-6cmtoj51d6rfa45c7japfisol3b224aa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgxHEOkeW2-haW82CRAUQ6XWf8rFqWAoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923271693774-6cmtoj51d6rfa45c7japfisol3b224aa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923271693774-031nup6us86splrtqujqm0am49d6gqqf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.instdeals.theapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923271693774:android:a037dec7507d13480d579f",
+        "android_client_info": {
+          "package_name": "com.instdeals.browser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923271693774-6cmtoj51d6rfa45c7japfisol3b224aa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgxHEOkeW2-haW82CRAUQ6XWf8rFqWAoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923271693774-6cmtoj51d6rfa45c7japfisol3b224aa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923271693774-031nup6us86splrtqujqm0am49d6gqqf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.instdeals.theapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

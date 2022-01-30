@@ -2,8 +2,8 @@ import React, { ReactNodeArray, useState } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import { View, StyleSheet, Text, Platform, TouchableHighlight } from 'react-native';
 import { Callback } from '../tsCommon/baseTypes';
-import { logUiAction } from './Analytics';
-import NativeUtils from './NativeUtils';
+import { logUiAction } from '../nativeCommon/Analytics';
+import NativeUtils from '../nativeCommon/NativeUtils';
 interface Props {
   children: ReactNodeArray,
   maxNumChildren?: number,

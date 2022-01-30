@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, PureComponent, RefObject } from 'react';
 import { WebView } from 'react-native-webview';
 import TsUtils, { DeferredPromise } from '../tsCommon/TsUtils';
-import ScrollContext from '../nativeCommon/ScrollContext';
+import ScrollContext from '../contexts/ScrollContext';
 import { Platform } from 'react-native';
 import { Callback } from '../tsCommon/baseTypes';
 import { Bookmark } from '../bookmarks/BookmarkModel';

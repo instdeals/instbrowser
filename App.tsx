@@ -1,37 +1,25 @@
-import React, { LegacyRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useCallback } from 'react';
 import {
-  SafeAreaView,
-  StatusBar,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
-import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { BookmarkContext, BookmarkContextProvider } from './src/bookmarks/BookmarkContext';
 import NavigationContext, { NavigationContextProvider } from './src/contexts/NavigationContext';
 import WebViewContext, { WebViewContextProvider } from './src/contexts/WebViewContext';
 import I18nResources from './src/I18nResources';
-import BottomBar, { BottomBarItem } from './src/nativeCommon/BottomBar';
+import BaseApp from './src/nativeCommon/BaseApp';
+import BottomBar, { BottomBarItem } from './src/views/BottomBar';
 import commonStyles from './src/nativeCommon/commonStyles';
 import { i18nInit } from './src/nativeCommon/i18n';
-import { AutoHideView, ScrollViewProvider } from './src/nativeCommon/ScrollContext';
+import { AutoHideView, ScrollViewProvider } from './src/contexts/ScrollContext';
 import SecondaryContentView from './src/SecondaryContentView';
 import { WebTabContextProvider, WebViewTabContext } from './src/tabs/WebTabContext';
 import WebTabView from './src/tabs/WebTabView';
 import { doNothing } from './src/tsCommon/baseTypes';
 
 i18nInit(I18nResources);
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 4,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#007AFF',
-  },
-};
 
 function AppInner() {
   const { api: navApi, state: navState } = useContext(NavigationContext)!;
@@ -71,20 +59,10 @@ function AppInner() {
 }
 
 export default function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: DefaultTheme.colors.background,
-    flex: 1,
-  };
-
-  return <PaperProvider theme={theme}>
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <WebViewContextProvider><NavigationContextProvider><BookmarkContextProvider><WebTabContextProvider>
-        <AppInner />
-      </WebTabContextProvider></BookmarkContextProvider></NavigationContextProvider></WebViewContextProvider>
-    </SafeAreaView>
-  </PaperProvider>
+  return <BaseApp>
+    <WebViewContextProvider><NavigationContextProvider><BookmarkContextProvider><WebTabContextProvider>
+      <AppInner />
+    </WebTabContextProvider></BookmarkContextProvider></NavigationContextProvider></WebViewContextProvider>
+  </BaseApp>;
 }
 
